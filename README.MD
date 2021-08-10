@@ -15,12 +15,10 @@ tp2virtual [substitutionAlgorithm] [logFile] [pageSize] [memorySize]
 
 Ao final da simulação, quando a sequência de acessos à memória terminar, o programa deve gerar um pequeno relatório, contendo:
 
-• a configuração utilizada (definida pelos quatro parâmetros);
-• o número total de acessos à memória contidos no arquivo;
-• o número de page faults (páginas lidas);
-• o número de páginas “sujas” que tiveram que ser escritas de volta no
-  disco (lembrando-se que páginas sujas que existam no final da execução
-  não precisam ser escritas).
+* a configuração utilizada (definida pelos quatro parâmetros);
+* o número total de acessos à memória contidos no arquivo;
+* o número de page faults (páginas lidas);
+* o número de páginas “sujas” que tiveram que ser escritas de volta no disco (lembrando-se que páginas sujas que existam no final da execução não precisam ser escritas).
 
 Um exemplo de saı́da poderia ser da forma (valores completamente fictı́cios):
 
