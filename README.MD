@@ -24,10 +24,10 @@ Um exemplo de saı́da poderia ser da forma (valores completamente fictı́cios)
 
 $ tp2virtual lru arquivo.log 4 128
 
-Executando o simulador...
+```Executando o simulador...
 Arquivo de entrada: arquivo.log
 Tamanho da memoria: 128 KB
 Tamanho das páginas: 4 KB
 Tecnica de reposicao: lru
 Paginas lidas: 520
-Paginas escritas: 352
+Paginas escritas: 352```
