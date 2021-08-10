@@ -1,17 +1,19 @@
-# How to run :
+## How to run :
 
-make -> runs makefile and generates the executable -> tp2virtual
+Execute the makefile by runnning ```make```, which will generate the executable ```tp2virtual```.
 
-The executable takes 4 arguments :
+Said executable takes 4 arguments :
 
+```bash
 tp2virtual [substitutionAlgorithm] [logFile] [pageSize] [memorySize]
+```
 
-* [substitutionAlgorithm] Input one of the three available substitution algorithms [LRU], [FIFO] or a custom one designed by us [LEFE].
-* [logFile] .log file containing the sequence of memory addresses accessed, such as the ones contained in the logs folder.
-* [pageSize] the size of each page/memory frame, from 2 to 64 (in KB)
-* [memorySize] the total size of physical memory available to the process, from 128 a 16384 (also in KB)
+* ```[substitutionAlgorithm]``` Input one of the three available substitution algorithms [lru], [fifo] or a custom one designed by us [LEFE].
+* ```[logFile]``` .log file containing the sequence of memory addresses accessed, such as the ones contained in the logs folder.
+* ```[pageSize]``` the size of each page/memory frame, from 2 to 64 (in KB)
+* ```[memorySize]``` the total size of physical memory available to the process, from 128 a 16384 (also in KB)
 
-# Output format :
+## Output format :
 
 Ao final da simulação, quando a sequência de acessos à memória terminar, o programa deve gerar um pequeno relatório, contendo:
 
@@ -22,9 +24,11 @@ Ao final da simulação, quando a sequência de acessos à memória terminar, o 
 
 Um exemplo de saı́da poderia ser da forma (valores completamente fictı́cios):
 
+```bash
 $ tp2virtual lru arquivo.log 4 128
-
-```Executando o simulador...
+```
+```bash
+Executando o simulador...
 Arquivo de entrada: arquivo.log
 Tamanho da memoria: 128 KB
 Tamanho das páginas: 4 KB
