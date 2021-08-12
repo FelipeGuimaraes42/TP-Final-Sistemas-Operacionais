@@ -28,45 +28,42 @@ int main(int argc, char **argv){
 		return 1;
 	}
 
-	// ... Criação da estrutura TabelaPaginas e seu preenchimento ...
+	// Criando e preenchendo estrutura de dados ...
 	int numPag = tamMem/tamPag;
 	TabelaDePaginas tabela[numPag];
 	inicializaTabela(tabela, numPag);
 
-	int offset, numPagVirt, pagEncontradaEm, pagLivreEm,tamPagTemp, endInt, isW, isR, escritas, lidas, operacoes;
-	char end[8], rw;
+	Relatorio rel;
+	inicializaRel(&rel);
 
-	offset = numPagVirt = pagEncontradaEm = pagLivreEm = escritas = lidas = 0;
-	tamPagTemp = tamPag;
+	// Criando variáveis e determinando o offset ...
+	char rw; // Caractere que representa a operação - 'R' = read ; 'W' = write.
+	char end[8]; // Endereço de memória em hexadecimal.
+	int offset, numPagVirt, pagEncontradaEm, pagLivreEm, endInt;
 
-	while(tamPagTemp > 1){
-		tamPagTemp = tamPagTemp >> 1;
-		offset++;
-	}
+	offset = determinarOffset(numPag); // Necessário para determinar a página virtual
+	numPagVirt = pagEncontradaEm = pagLivreEm = 0;
 
 	clock_t inicio = clock();
 
 	FILE *lerArq = fopen(arq, "r");
 	if (lerArq != NULL) {
+		while (fscanf(lerArq, "%s %c", end, &rw) != EOF) {
+			
+			end[8] = '\0';
+			endInt = (int) strtol(end, NULL, 16);
+			pagEncontradaEm = encontrarEndereco(tabela, numPag, end);
 
-        printf("Executando o simulador...\n");
-
-		//fscanf(fileOpen,"%s %c", addr,&rw) != EOF
-		while(fscanf(lerArq, "%s %c", end, &rw) != EOF){
-
-			isR = ((rw == 'R') || (rw == 'r'));
-			isW = ((rw == 'W') || (rw == 'w'));
-
-			if(isR || isW){
-
-				if(isW) escritas++;
-				if(isR) lidas++;
-				operacoes++;
-
-				end[8] = '\0';
-				endInt = (int) strtol(end, NULL, 16);
-				
-				pagEncontradaEm = encontrarEndereco(tabela, numPag, end);
+			if (rw == "R") {
+				rel.oppValidas ++;
+				rel.leituras ++;
+			}
+			else if (rw == "W") {
+				rel.oppValidas ++;
+				rel.escritas ++;
+			}
+			else {
+				rel.oppInvalidas ++;
 			}
 		}
 	}
