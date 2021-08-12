@@ -58,11 +58,14 @@ int main(int argc, char **argv){
 			isW = ((rw == 'W') || (rw == 'w'));
 
 			if(isR || isW){
+
 				if(isW) escritas++;
 				if(isR) lidas++;
 				operacoes++;
+
 				end[8] = '\0';
 				endInt = (int) strtol(end, NULL, 16);
+				
 				pagEncontradaEm = encontrarEndereco(tabela, numPag, end);
 			}
 		}
