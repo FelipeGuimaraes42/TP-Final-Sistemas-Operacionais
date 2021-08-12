@@ -33,10 +33,10 @@ int main(int argc, char **argv){
 	TabelaDePaginas tabela[numPag];
 	inicializaTabela(tabela, numPag);
 
-	int offset, numPagVirt, pagEncontradaEm, pagLivreEm, tamPagTemp, endInt, isWrite, isRead;
+	int offset, numPagVirt, pagEncontradaEm, pagLivreEm,tamPagTemp, endInt, isW, isR, escritas, lidas, operacoes;
 	char end[8], rw;
 
-	offset = numPagVirt = pagEncontradaEm = pagLivreEm = 0;
+	offset = numPagVirt = pagEncontradaEm = pagLivreEm = escritas = lidas = 0;
 	tamPagTemp = tamPag;
 
 	while(tamPagTemp > 1){
@@ -48,7 +48,24 @@ int main(int argc, char **argv){
 
 	FILE *lerArq = fopen(arq, "r");
 	if (lerArq != NULL) {
-		// ... 
+
+        printf("Executando o simulador...\n");
+
+		//fscanf(fileOpen,"%s %c", addr,&rw) != EOF
+		while(fscanf(lerArq, "%s %c", end, &rw) != EOF){
+
+			isR = ((rw == 'R') || (rw == 'r'));
+			isW = ((rw == 'W') || (rw == 'w'));
+
+			if(isR || isW){
+				if(isW) escritas++;
+				if(isR) lidas++;
+				operacoes++;
+				end[8] = '\0';
+				endInt = (int) strtol(end, NULL, 16);
+				pagEncontradaEm = encontrarEndereco(tabela, numPag, end);
+			}
+		}
 	}
 	else {
 		fprintf(stderr, "Não foi possível ler o arquivo de entrada.\n");

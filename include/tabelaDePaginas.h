@@ -12,6 +12,8 @@ typedef struct {
 } TabelaDePaginas;
 
 
-void inicializaTabela(TabelaDePaginas *tabela,int numPaginas);
+void inicializaTabela(TabelaDePaginas *tabela, int numPaginas);
+
+int encontrarEndereco(TabelaDePaginas * tabela, int numPaginas, char *endereco);
 
 #endif
