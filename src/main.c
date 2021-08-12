@@ -54,11 +54,11 @@ int main(int argc, char **argv){
 			endInt = (int) strtol(end, NULL, 16);
 			pagEncontradaEm = encontrarEndereco(tabela, numPag, end);
 
-			if (rw == "R") {
+			if (rw == 'R') {
 				rel.oppValidas ++;
 				rel.leituras ++;
 			}
-			else if (rw == "W") {
+			else if (rw == 'W') {
 				rel.oppValidas ++;
 				rel.escritas ++;
 			}
