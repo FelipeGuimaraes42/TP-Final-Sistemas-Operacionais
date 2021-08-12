@@ -29,10 +29,20 @@ int main(int argc, char **argv){
 	}
 
 	// ... Criação da estrutura TabelaPaginas e seu preenchimento ...
-	int numPaginas = tamMem/tamPag;
-	TabelaDePaginas tabela[numPaginas];
-	inicializaTabela(tabela, numPaginas);
+	int numPag = tamMem/tamPag;
+	TabelaDePaginas tabela[numPag];
+	inicializaTabela(tabela, numPag);
 
+	int offset, numPagVirt, pagEncontradaEm, pagLivreEm, tamPagTemp, endInt, isWrite, isRead;
+	char end[8], rw;
+
+	offset = numPagVirt = pagEncontradaEm = pagLivreEm = 0;
+	tamPagTemp = tamPag;
+
+	while(tamPagTemp > 1){
+		tamPagTemp = tamPagTemp >> 1;
+		offset++;
+	}
 
 	clock_t inicio = clock();
 
