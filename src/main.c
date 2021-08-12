@@ -23,13 +23,16 @@ int main(int argc, char **argv){
 		return 1;
 	}
 
-	// Não sei se essa logica funciona ainda, mas acredito que sim.
 	if((strcmp(alg, "lru") != 0) && (strcmp(alg, "fifo") != 0) && (strcmp(alg,"lefe") != 0)){
 		fprintf(stderr, "ERRO: O algoritmo deve ser lru, fifo ou lefe.\n");
 		return 1;
 	}
 
 	// ... Criação da estrutura TabelaPaginas e seu preenchimento ...
+	int numPaginas = tamMem/tamPag;
+	TabelaDePaginas tabela[numPaginas];
+	inicializaTabela(tabela, numPaginas);
+
 
 	clock_t inicio = clock();
 

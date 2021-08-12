@@ -9,6 +9,8 @@
 #include <errno.h>
 #include <time.h>
 
+#include "tabelaDePaginas.h"
+
 typedef struct {
   int idAlg;
   int bitValido;
