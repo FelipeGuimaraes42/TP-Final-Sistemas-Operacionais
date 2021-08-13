@@ -1,7 +1,8 @@
 #include "../include/fifo.h"
 
 int fifo (TabelaDePaginas *tabela, int numPag) {
-  int referencia, fifo = -1;
+  int referencia;
+  int fifo = -1;
   referencia = tabela[0].IdAlgoritmo;
   for(int i = 0; i < numPag; i ++){
     if(referencia > tabela[i].IdAlgoritmo) {
