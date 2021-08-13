@@ -11,5 +11,6 @@
 
 #include "tabelaDePaginas.h"
 #include "auxiliar.h"
+#include "lru.h"
 
 #endif

@@ -29,3 +29,17 @@ int encontrarPaginaLivre(TabelaDePaginas *tabela, int numPaginas){
   }
   return -1;
 }
+
+void escreverNaTabela(TabelaDePaginas *tabela, int numPagina, char *endereco, int paginaVirtual){
+  tabela[numPagina].bitValido = 1;
+  memcpy(tabela[numPagina].endereco, endereco, strlen(endereco)+1);
+  tabela[numPagina].numeroPagina = paginaVirtual;
+
+  if(tabela[numPagina].bitSujo == 0){
+    tabela[numPagina].bitSujo = 1;
+  }
+
+  if(tabela[numPagina].bitSujo == -1){
+    tabela[numPagina].bitSujo = 0;
+  }
+} 

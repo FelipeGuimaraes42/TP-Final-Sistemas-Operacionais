@@ -39,10 +39,10 @@ int main(int argc, char **argv){
 	// Criando variáveis e determinando o offset ...
 	char rw; // Caractere que representa a operação - 'R' = read ; 'W' = write.
 	char end[8]; // Endereço de memória em hexadecimal.
-	int offset, numPagVirt, pagEncontradaEm, pagLivreEm, endInt, pagLidas, writeBacks;
+	int offset, numPagVirt, pagEncontradaEm, pagLivreEm, endInt, pagLidas, operacoes, writeBacks;
 
 	offset = determinarOffset(numPag); // Necessário para determinar a página virtual
-	numPagVirt = pagEncontradaEm = pagLivreEm = pagLidas = writeBacks = 0;
+	numPagVirt = pagEncontradaEm = pagLivreEm = pagLidas = operacoes = writeBacks = 0;
 
 	clock_t inicio = clock();
 
@@ -53,6 +53,7 @@ int main(int argc, char **argv){
 			end[8] = '\0';
 			endInt = (int) strtol(end, NULL, 16);
 			pagEncontradaEm = encontrarEndereco(tabela, numPag, end);
+      operacoes++;
 
 			if (rw == 'R') {
 				rel.oppValidas ++;
@@ -69,9 +70,16 @@ int main(int argc, char **argv){
       if(pagEncontradaEm == -1){
         pagLidas++;
         pagLivreEm = encontrarPaginaLivre(tabela, numPag);
+
         if(pagLivreEm == -1){
           if(rw == 'W'){
             writeBacks++;
+          }
+          
+          if(!strcmp(alg, "lru")){
+            pagLivreEm = lru(tabela, numPag);
+            escreverNaTabela(tabela, numPag, end, numPagVirt);
+            tabela[pagLivreEm].IdAlgoritmo = operacoes; 
           }
         }
       }

@@ -18,4 +18,6 @@ int encontrarEndereco(TabelaDePaginas * tabela, int numPaginas, char *endereco);
 
 int encontrarPaginaLivre(TabelaDePaginas *tabela, int numPaginas);
 
+void escreverNaTabela(TabelaDePaginas *tabela, int numPaginas, char *endereco, int paginaVirtual);
+
 #endif
