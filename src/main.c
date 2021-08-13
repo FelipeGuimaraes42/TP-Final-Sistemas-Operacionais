@@ -122,7 +122,7 @@ int main(int argc, char **argv){
 
 	// ... Mensagens de saída no formato desejado ...
 
-	fprintf(stdout, "Tempo de execucao = %lf seg", tempoGasto);
+	fprintf(stdout, "Tempo de execucao = %lf seg\n", tempoGasto);
 
 	// Armazenando dados para análise de performance.
 	FILE *logTempos;
