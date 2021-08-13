@@ -1,4 +1,4 @@
-#include "aux.h"
+#include "auxiliar.h"
 
 void inicializaRel(Relatorio *rel) {
   rel->escritas = 0;

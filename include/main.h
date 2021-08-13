@@ -10,6 +10,6 @@
 #include <time.h>
 
 #include "tabelaDePaginas.h"
-#include "aux.h"
+#include "auxiliar.h"
 
 #endif
