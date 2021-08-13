@@ -1,4 +1,4 @@
-#include "tabelaDePaginas.h"
+#include "../include/tabelaDePaginas.h"
 
 void inicializaTabela(TabelaDePaginas *tabela, int numPaginas) {
   for(int i= 0; i< numPaginas; i++){
