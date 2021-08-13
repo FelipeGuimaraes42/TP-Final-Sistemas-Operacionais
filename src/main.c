@@ -76,13 +76,13 @@ int main(int argc, char **argv){
             writeBacks++;
           }
 
-					if(!strcmp(alg,'fifo')){
+					if(!strcmp(alg,"fifo")){
 						pagLivreEm = fifo(tabela, numPag);
 						escreverNaTabela(tabela, numPag, end, numPagVirt);
 						tabela[pagLivreEm].IdAlgoritmo = idAlg;
 					}
-					else if(!strcmp(alg,'lefe')){
-						fprint(stderr, 'Lefe ainda não foi implementado. \n');
+					else if(!strcmp(alg,"lefe")){
+						fprintf(stderr, "Lefe ainda não foi implementado. \n");
 					}
 					else if(!strcmp(alg, "lru")){
             pagLivreEm = lru(tabela, numPag);
@@ -92,7 +92,7 @@ int main(int argc, char **argv){
         }
 				else{
 					escreverNaTabela(tabela, numPag, end, numPagVirt);
-					if(!strcmp(alg,'fifo') || !strcmp(alg,'lru')) {
+					if(!strcmp(alg,"fifo") || !strcmp(alg,"lru")) {
 						tabela[pagLivreEm].IdAlgoritmo = idAlg;
 					}
 					// ...
@@ -102,9 +102,6 @@ int main(int argc, char **argv){
 				rel.hits ++;
 				// ...
 			}
-		}
-		else {
-			// ... noCommand ++; -> criamos essa variável ? se bobear vale a pena colocar ela dentro da estrutura relatorio
 		}
 	}
 	else {
