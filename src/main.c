@@ -39,10 +39,10 @@ int main(int argc, char **argv){
 	// Criando variáveis e determinando o offset ...
 	char rw; // Caractere que representa a operação - 'R' = read ; 'W' = write.
 	char end[8]; // Endereço de memória em hexadecimal.
-	int offset, numPagVirt, pagEncontradaEm, pagLivreEm, endInt, pagLidas, operacoes, writeBacks;
+	int offset, numPagVirt, pagEncontradaEm, pagLivreEm, endInt, pagLidas, idAlg, writeBacks;
 
 	offset = determinarOffset(numPag); // Necessário para determinar a página virtual
-	numPagVirt = pagEncontradaEm = pagLivreEm = pagLidas = operacoes = writeBacks = 0;
+	numPagVirt = pagEncontradaEm = pagLivreEm = pagLidas = idAlg = writeBacks = 0;
 
 	clock_t inicio = clock();
 
@@ -53,7 +53,7 @@ int main(int argc, char **argv){
 			end[8] = '\0';
 			endInt = (int) strtol(end, NULL, 16);
 			pagEncontradaEm = encontrarEndereco(tabela, numPag, end);
-      operacoes++;
+      idAlg++;
 
 			if (rw == 'R') {
 				rel.oppValidas ++;
@@ -75,14 +75,36 @@ int main(int argc, char **argv){
           if(rw == 'W'){
             writeBacks++;
           }
-          
-          if(!strcmp(alg, "lru")){
+
+					if(!strcmp(alg,'fifo')){
+						pagLivreEm = fifo(tabela, numPag);
+						escreverNaTabela(tabela, numPag, end, numPagVirt);
+						tabela[pagLivreEm].IdAlgoritmo = idAlg;
+					}
+					else if(!strcmp(alg,'lefe')){
+						fprint(stderr, 'Lefe ainda não foi implementado. \n');
+					}
+					else if(!strcmp(alg, "lru")){
             pagLivreEm = lru(tabela, numPag);
             escreverNaTabela(tabela, numPag, end, numPagVirt);
-            tabela[pagLivreEm].IdAlgoritmo = operacoes; 
+            tabela[pagLivreEm].IdAlgoritmo = idAlg; 
           }
         }
+				else{
+					escreverNaTabela(tabela, numPag, end, numPagVirt);
+					if(!strcmp(alg,'fifo') || !strcmp(alg,'lru')) {
+						tabela[pagLivreEm].IdAlgoritmo = idAlg;
+					}
+					// ...
+				}
       }
+			else {
+				rel.hits ++;
+				// ...
+			}
+		}
+		else {
+			// ... noCommand ++; -> criamos essa variável ? se bobear vale a pena colocar ela dentro da estrutura relatorio
 		}
 	}
 	else {

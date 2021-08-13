@@ -10,6 +10,7 @@ typedef struct {
   int leituras;
   int oppInvalidas;
   int oppValidas;
+  int hits;
 } Relatorio;
 
 void inicializaRel(Relatorio *rel);

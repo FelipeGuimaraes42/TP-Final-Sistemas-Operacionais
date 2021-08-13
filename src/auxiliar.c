@@ -5,6 +5,7 @@ void inicializaRel(Relatorio *rel) {
   rel->leituras = 0;
   rel->oppInvalidas = 0;
   rel->oppValidas = 0;
+  rel->hits = 0;
 }
 
 int determinarOffset(int numPaginas) {
