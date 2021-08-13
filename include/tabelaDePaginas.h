@@ -4,11 +4,11 @@
 #include <string.h>
 
 typedef struct {
-    int bitValido;
-    int numeroPagina;
-    int bitSujo;
-    char endereco[8];
-    int IdAlgoritmo; 
+  int bitValido;
+  int numeroPagina;
+  int bitSujo;
+  char endereco[8];
+  int IdAlgoritmo; 
 } TabelaDePaginas;
 
 
