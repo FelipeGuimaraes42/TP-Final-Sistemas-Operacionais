@@ -6,6 +6,8 @@ void inicializaRel(Relatorio *rel) {
   rel->oppInvalidas = 0;
   rel->oppValidas = 0;
   rel->hits = 0;
+  rel->pageFaults = 0;
+  rel->pagSujas = 0;
 }
 
 int determinarOffset(int numPaginas) {

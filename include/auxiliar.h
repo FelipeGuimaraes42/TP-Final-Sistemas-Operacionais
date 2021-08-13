@@ -11,6 +11,8 @@ typedef struct {
   int oppInvalidas;
   int oppValidas;
   int hits;
+  int pageFaults;
+  int pagSujas;
 } Relatorio;
 
 void inicializaRel(Relatorio *rel);

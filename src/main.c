@@ -39,12 +39,12 @@ int main(int argc, char **argv){
 	// Criando variáveis e determinando o offset ...
 	char rw; // Caractere que representa a operação - 'R' = read ; 'W' = write.
 	char end[8]; // Endereço de memória em hexadecimal.
-	int offset, pagEncontradaEm, pagLivreEm, pagLidas, idAlg, writeBacks;
+	int offset, pagEncontradaEm, pagLivreEm, idAlg;
 	unsigned numPagVirt;
 	unsigned int endInt;
 
 	offset = determinarOffset(numPag); // Necessário para determinar a página virtual
-	pagEncontradaEm = pagLivreEm = pagLidas = idAlg = writeBacks = 0;
+	pagEncontradaEm = pagLivreEm = idAlg = 0;
 
 	clock_t inicio = clock();
 
@@ -70,13 +70,14 @@ int main(int argc, char **argv){
 				rel.oppInvalidas ++;
 			}
 
+			// Se não encontrar um endereço para a iteração atual
       if(pagEncontradaEm == -1){
-        pagLidas++;
+        rel.pageFaults ++;
         pagLivreEm = encontrarPaginaLivre(tabela, numPag);
-
+				// Se não houver páginas livres
         if(pagLivreEm == -1){
           if(rw == 'W'){
-            writeBacks++;
+            rel.pagSujas ++;
           }
 
 					if(!strcmp(alg,"fifo")){
@@ -101,6 +102,8 @@ int main(int argc, char **argv){
 					// ...
 				}
       }
+			// Do contrário, houve hits, ou seja achamos o desejado na
+			// pagina encontrada para a iteração atual.
 			else {
 				rel.hits ++;
 				// ...
