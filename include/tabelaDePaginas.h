@@ -16,4 +16,6 @@ void inicializaTabela(TabelaDePaginas *tabela, int numPaginas);
 
 int encontrarEndereco(TabelaDePaginas * tabela, int numPaginas, char *endereco);
 
+int encontrarPaginaLivre(TabelaDePaginas *tabela, int numPaginas);
+
 #endif

@@ -20,3 +20,12 @@ int encontrarEndereco(TabelaDePaginas * tabela, int numPaginas, char *endereco){
   }
   return -1;
 }
+
+int encontrarPaginaLivre(TabelaDePaginas *tabela, int numPaginas){
+  for(int i=0; i < numPaginas; i++){
+    if(tabela[i].bitValido == 0){
+        return i;
+      } 
+  }
+  return -1;
+}

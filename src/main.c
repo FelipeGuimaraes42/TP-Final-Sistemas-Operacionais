@@ -39,10 +39,10 @@ int main(int argc, char **argv){
 	// Criando variáveis e determinando o offset ...
 	char rw; // Caractere que representa a operação - 'R' = read ; 'W' = write.
 	char end[8]; // Endereço de memória em hexadecimal.
-	int offset, numPagVirt, pagEncontradaEm, pagLivreEm, endInt;
+	int offset, numPagVirt, pagEncontradaEm, pagLivreEm, endInt, pagLidas, writeBacks;
 
 	offset = determinarOffset(numPag); // Necessário para determinar a página virtual
-	numPagVirt = pagEncontradaEm = pagLivreEm = 0;
+	numPagVirt = pagEncontradaEm = pagLivreEm = pagLidas = writeBacks = 0;
 
 	clock_t inicio = clock();
 
@@ -65,6 +65,16 @@ int main(int argc, char **argv){
 			else {
 				rel.oppInvalidas ++;
 			}
+
+      if(pagEncontradaEm == -1){
+        pagLidas++;
+        pagLivreEm = encontrarPaginaLivre(tabela, numPag);
+        if(pagLivreEm == -1){
+          if(rw == 'W'){
+            writeBacks++;
+          }
+        }
+      }
 		}
 	}
 	else {
