@@ -2,7 +2,7 @@
 
 // Felipe
 
-void virtualMemorySimulator(PageTable *table, Memory *memory, FILE *arq, char *alg) {
+void virtualMemorySimulator(PageTable *table, Memory *memory, FILE *file, char *alg) {
   unsigned addr, frame, index;
   unsigned offset = 0;
   char rw;
@@ -14,11 +14,11 @@ void virtualMemorySimulator(PageTable *table, Memory *memory, FILE *arq, char *a
     offset ++;
   }
 
-  while (!feof(arq)) {
-    fscanf(arq, "%x %c", &addr, &rw);
+  while (!feof(file)) {
+    fscanf(file, "%x %c", &addr, &rw);
     index = addr >> offset;
 
-    if (!feof(arq)) {
+    if (!feof(file)) {
       if (table->pages[index].loadedFlag == 1) { // caso a pagina ja esteja carregada, iremos acessar normalmente
         table->pages[index].secondChanceFlag = 1;
         table->pages[index].clockAccess = memory->clock;

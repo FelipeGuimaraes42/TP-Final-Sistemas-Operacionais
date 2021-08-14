@@ -5,7 +5,7 @@
 int fifo (PageTable *table, Memory *memory) {
   int faster = __INT_MAX__, frame = 0, index;
 
-  if(memory->occupiedFrames < memory->framesQty){
+  if(memory->occupiedFramesQty < memory->framesQty){
     for(int i = 0; i < memory->framesQty; i++) {
       if(memory->frames[i].filledFlag == 0){
         return i;
@@ -26,7 +26,7 @@ int fifo (PageTable *table, Memory *memory) {
 int lru (PageTable *table, Memory *memory) {
   int faster = __INT_MAX__, frame = 0, index;
 
-  if(memory->occupiedFrames < memory->framesQty){
+  if(memory->occupiedFramesQty < memory->framesQty){
     for(int i = 0; i < memory->framesQty; i++) {
       if(memory->frames[i].filledFlag == 0){
         return i;

@@ -5,7 +5,7 @@
 int main(int argc, char **argv){
     
 	char *alg = argv[1];
-	char *arq = argv[2];
+	char *file = argv[2];
 	int pageSize = atoi(argv[3]);
 	int memSize = atoi(argv[4]);
 	double executionTime = 0.0;
@@ -31,14 +31,16 @@ int main(int argc, char **argv){
 	}
 
 	// Criando e preenchendo estrutura de dados ...
-	PageTable table;
-	Memory memory;
-	Report report;
-	initializeStructures(&table, &memory, &report, memSize, pageSize);
+	PageTable *table;
+	Memory *memory;
+	Report *report;
+	initializeStructures(table, memory, report, memSize, pageSize);
 
-	// ...
+	// Algoritmo principal
 
 	clock_t start = clock();
+
+	virtualMemorySimulator(table, memory, fopen(file, "r"), alg);
 
 	// ...
 
