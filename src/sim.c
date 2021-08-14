@@ -2,6 +2,6 @@
 
 // Felipe
 
-void sim (PageTable *table, Memory *memory, FILE *arq, char *) {
+void sim (PageTable *table, Memory *memory, FILE *arq, char *alg) {
   
 }

@@ -9,7 +9,7 @@
 
 typedef struct {
   unsigned frame;
-  unsigned clockLoad;
+  unsigned loadedClock;
   long int clockAccess;
   int dirtyFlag;
   int loadFlag;
@@ -24,14 +24,14 @@ typedef struct {
 
 typedef struct {
   unsigned page;
-  int flagFilled;
+  int filledFlag;
 } Frame;
 
 typedef struct {
   unsigned pagesRead;
   unsigned pagesToWrite;
   unsigned framesQty;
-  unsigned framesOccupied;
+  unsigned occupiedFrames;
   unsigned clock;
   unsigned memSize;
   Frame *frames;
