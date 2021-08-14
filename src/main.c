@@ -1,5 +1,7 @@
 #include "../include/main.h"
 
+// Leandro
+
 int main(int argc, char **argv){
     
 	char *alg = argv[1];
@@ -38,7 +40,7 @@ int main(int argc, char **argv){
 
 	// Criando variáveis e determinando o offset ...
 	char rw; // Caractere que representa a operação - 'R' = read ; 'W' = write.
-	char end[8]; // Endereço de memória em hexadecimal.
+	char end[7]; // Endereço de memória em hexadecimal.
 	int offset, pagEncontradaEm, pagLivreEm, idAlg;
 	unsigned numPagVirt;
 	unsigned int endInt;
@@ -52,7 +54,7 @@ int main(int argc, char **argv){
 	if (lerArq != NULL) {
 		while (fscanf(lerArq, "%s %c", end, &rw) != EOF) {
 			
-			end[8] = '\0';
+			end[7] = '\0';
 			endInt = (int) strtol(end, NULL, 16);
 			numPagVirt = endInt >> offset;
 			pagEncontradaEm = encontrarEndereco(tabela, numPag, end);
