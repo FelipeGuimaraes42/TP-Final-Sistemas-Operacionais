@@ -39,8 +39,9 @@ void virtualMemorySimulator(PageTable *table, Memory *memory, FILE *file, char *
 
         if (memory->frames[frame].filledFlag) {
           freeFullFrame(table, memory, frame);
-          loadPage(table, memory, frame, index);
         }
+        
+        loadPage(table, memory, frame, index);
       }
       if (rw == 'W') {
         table->pages[index].dirtyFlag = 1;

@@ -1,7 +1,8 @@
 #include "../include/algorithms.h"
 
 int fifo (PageTable *table, Memory *memory) {
-  int faster = __INT_MAX__, frame = 0, index;
+  int faster = INT_MAX;
+  int frame = 0, index;
 
   if(memory->occupiedFramesQty < memory->framesQty){
     for(int i = 0; i < memory->framesQty; i++) {
@@ -22,7 +23,8 @@ int fifo (PageTable *table, Memory *memory) {
 }
 
 int lru (PageTable *table, Memory *memory) {
-  int faster = __INT_MAX__, frame = 0, index;
+  int faster = INT_MAX;
+  int frame = 0, index;
 
   if(memory->occupiedFramesQty < memory->framesQty){
     for(int i = 0; i < memory->framesQty; i++) {
@@ -41,6 +43,7 @@ int lru (PageTable *table, Memory *memory) {
   return frame;
 }
 
-int lefe (PageTable *table, Memory *memory) {
-  return 1;
-} // lefe = second chance ????
+int lefe (Memory *memory) {
+  srand(time(NULL));
+	return (rand() % memory->framesQty);
+}

@@ -67,20 +67,12 @@ int main(int argc, char **argv){
 	}
 	fprintf(logTempos, "%lf, " ,executionTime);
 
-	//Fecha arquivos
-	fclose(logTempos);
-	fclose(file);
-
-	printf("Arquivo de entrada: %s\n", argv[2]);
-	printf("Tamanho da memoria: %s KB\n", argv[4]);
-	printf("Tamanho das paginas: %s KB\n", argv[3]);
-	printf("Tecnica de reposicao: %s\n", argv[1]);
-	printf("Paginas lidas: %d\n", memory.pagesRead);
-	printf("Paginas escritas: %d\n", memory.pagesToWrite);
-	
+	// Libera memória alocada dinamicamente.
 	free(memory.frames);
 	free(table.pages);
 
+	//Fecha arquivos.
+	fclose(logTempos);
 	fclose(file);
 
 	return 0;

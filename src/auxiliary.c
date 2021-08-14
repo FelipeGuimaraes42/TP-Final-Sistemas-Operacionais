@@ -12,7 +12,7 @@ unsigned returnFreeFrame (Memory *memory) {
 void freeFullFrame (PageTable *table, Memory *memory, unsigned frame) {
   unsigned targetPage = memory->frames[frame].page;
   // Memory changes.
-  if (table->pages[targetPage].dirtyFlag) {
+  if (table->pages[targetPage].dirtyFlag == 1) {
     memory->pagesToWrite ++;
   }
   memory->occupiedFramesQty --;
@@ -45,7 +45,7 @@ void initializeStructures (PageTable *table, Memory *memory, Report *report, int
   memory->memSize = memSize;
   memory->frames = (Frame*)malloc(memory->framesQty*sizeof(Frame));
   for (int i = 0 ; i < memory->framesQty; i++) {
-    memory->frames[i].filledFlag = 0; 
+    memory->frames[i].filledFlag = 0;
   }
 
   // Initializing the page table structure.
