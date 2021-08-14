@@ -1,7 +1,7 @@
 #ifndef ALGORITHMS_H
 #define ALGORITHMS_H
 
-#include "sim.h"
+#include "virtualMemorySimulator.h"
 
 /**
  * Defines the algorithms used in this project.
