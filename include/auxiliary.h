@@ -4,7 +4,7 @@
 #include "sim.h"
 
 /**
- * Defines methods that are auxiliary in nature.
+ * Defines a structure and methods that are auxiliary in nature.
  */
 
 typedef struct {
@@ -15,7 +15,7 @@ typedef struct {
   int dirtyPages;
 } Report;
 
-int determinarOffset(int numPaginas);
+int getOffset(int numPages);
 
 unsigned getPage (unsigned addr, int offset);
 

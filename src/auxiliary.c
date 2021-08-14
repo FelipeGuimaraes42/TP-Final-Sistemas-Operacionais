@@ -14,7 +14,7 @@ void returnFlagFullFrame (PageTable *table, Memory *memory, unsigned frame) {
 
 }
 
-void initializeStructures (PageTable *table, Memory *memory, int memSize, int pageSize) {
+void initializeStructures (PageTable *table, Memory *memory, Report *report, int memSize, int pageSize) {
 
 }
 
@@ -22,9 +22,9 @@ void loadPage (PageTable *table, Memory *memory, unsigned frame, unsigned page) 
 
 }
 
-int determinarOffset(int numPaginas) {
+int getOffset(int numPages) {
   int offset = 0;
-  int tmp = numPaginas;
+  int tmp = numPages;
   while (tmp > 1) {
     tmp = tmp >> 1;
     offset ++;
