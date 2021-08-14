@@ -4,7 +4,7 @@
 #include <stdio.h>
 
 /**
- * Defines the structures method that simulate the memory.
+ * Defines the structures and the method that simulate the memory.
  */
 
 typedef struct {
@@ -12,7 +12,7 @@ typedef struct {
   unsigned loadedClock;
   long int clockAccess;
   int dirtyFlag;
-  int loadFlag;
+  int loadedFlag;
   int secondChanceFlag; // lefe = second chacne =P . se não formos fazer o algoritmo de segunda chance melhor remover depois
 } Page;
 
@@ -31,7 +31,7 @@ typedef struct {
   unsigned pagesRead;
   unsigned pagesToWrite;
   unsigned framesQty;
-  unsigned occupiedFrames;
+  unsigned occupiedFramesQty;
   unsigned clock;
   unsigned memSize;
   Frame *frames;

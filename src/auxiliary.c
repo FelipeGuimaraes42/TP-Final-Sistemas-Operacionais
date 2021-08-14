@@ -11,7 +11,21 @@ unsigned returnFreeFrame (Memory *memory) {
 }
 
 void freeFullFrame (PageTable *table, Memory *memory, unsigned frame) {
-
+  unsigned targetPage = memory->frames[frame].page;
+  // Memory changes.
+  if (table->pages[targetPage].dirtyFlag) {
+    memory->pagesToWrite ++;
+  }
+  memory->occupiedFramesQty --;
+  memory->frames[frame].filledFlag = 0;
+  memory->frames[frame].page = 0;
+  // Table Changes.
+  table->pages[targetPage].frame = 0;
+  table->pages[targetPage].loadedClock = -1;
+  table->pages[targetPage].clockAccess = 0;
+  table->pages[targetPage].dirtyFlag = 0;
+  table->pages[targetPage].loadedFlag = 0;
+  table->pages[targetPage].secondChanceFlag = 0;
 }
 
 void initializeStructures (PageTable *table, Memory *memory, Report *report, int memSize, int pageSize) {
@@ -25,7 +39,7 @@ void initializeStructures (PageTable *table, Memory *memory, Report *report, int
   memory->pagesRead = 0;
   memory->pagesToWrite = 0;
   memory->framesQty = memSize / pageSize;
-  memory->occupiedFrames = 0;
+  memory->occupiedFramesQty = 0;
   memory->clock = 0;
   memory->memSize = memSize;
   memory->frames = (Frame*)malloc(memory->framesQty*sizeof(Frame));
@@ -41,11 +55,22 @@ void initializeStructures (PageTable *table, Memory *memory, Report *report, int
     table->pages[i].loadedClock = 0;
     table->pages[i].clockAccess = -1;
     table->pages[i].dirtyFlag = 0;
-    table->pages[i].loadFlag = 0;
+    table->pages[i].loadedFlag = 0;
     table->pages[i].secondChanceFlag = 0;
   }
 }
 
-void loadPage (PageTable *table, Memory *memory, unsigned frame, unsigned page) {
-
+void loadPage (PageTable *table, Memory *memory, unsigned targetFrame, unsigned targetPage) {
+  // Table.
+  table->pages[targetPage].frame = targetFrame;
+  table->pages[targetPage].loadedClock = memory->clock;
+  table->pages[targetPage].clockAccess = memory->clock;
+  table->pages[targetPage].dirtyFlag = 0;
+  table->pages[targetPage].loadedFlag = 1;
+  table->pages[targetPage].secondChanceFlag = 1;
+  // Memory.
+  memory->occupiedFramesQty ++;
+  memory->clock ++;
+  memory->frames[targetFrame].filledFlag = 1;
+  memory->frames[targetFrame].page = targetPage;
 }

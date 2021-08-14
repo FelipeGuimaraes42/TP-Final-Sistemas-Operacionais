@@ -21,7 +21,7 @@ void freeFullFrame (PageTable *table, Memory *memory, unsigned frame);
 
 void initializeStructures (PageTable *table, Memory *memory, Report *report, int memSize, int pageSize);
 
-void loadPage (PageTable *table, Memory *memory, unsigned frame, unsigned page);
+void loadPage (PageTable *table, Memory *memory, unsigned targetFrame, unsigned targetPage);
 
 
 #endif
