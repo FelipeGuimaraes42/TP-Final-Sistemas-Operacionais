@@ -1,5 +1,5 @@
-#ifndef SIM_H
-#define SIM_H
+#ifndef VIRTUAL_MEMORY_SIMULATOR_H
+#define VIRTUAL_MEMORY_SIMULATOR_H
 
 #include <stdio.h>
 
@@ -9,7 +9,7 @@
 
 typedef struct {
   unsigned frame;
-  unsigned clockLoad;
+  unsigned loadedClock;
   long int clockAccess;
   int dirtyFlag;
   int loadFlag;
@@ -24,7 +24,7 @@ typedef struct {
 
 typedef struct {
   unsigned page;
-  int flagFilled;
+  int filledFlag;
 } Frame;
 
 typedef struct {
@@ -37,6 +37,6 @@ typedef struct {
   Frame *frames;
 } Memory;
 
-void sim (PageTable *table, Memory *memory, FILE *arq, char *);
+void virtualMemorySimulator (PageTable *, Memory *, FILE *, char *);
 
 #endif

@@ -1,7 +1,7 @@
 #ifndef AUXILIARY_H
 #define AUXILIARY_H
 
-#include "sim.h"
+#include "virtualMemorySimulator.h"
 
 /**
  * Defines a structure and methods that are auxiliary in nature.

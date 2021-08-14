@@ -11,6 +11,6 @@
 
 #include "algorithms.h"
 #include "auxiliary.h"
-#include "sim.h"
+#include "virtualMemorySimulator.h"
 
 #endif
