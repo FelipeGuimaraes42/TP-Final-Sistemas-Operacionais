@@ -15,13 +15,9 @@ typedef struct {
   int dirtyPages;
 } Report;
 
-int getOffset(int numPages);
-
-unsigned getPage (unsigned addr, int offset);
-
 unsigned returnFreeFrame (Memory *memory);
 
-void returnFlagFullFrame (PageTable *table, Memory *memory, unsigned frame);
+void freeFullFrame (PageTable *table, Memory *memory, unsigned frame);
 
 void initializeStructures (PageTable *table, Memory *memory, Report *report, int memSize, int pageSize);
 

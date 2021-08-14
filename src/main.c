@@ -6,21 +6,21 @@ int main(int argc, char **argv){
     
 	char *alg = argv[1];
 	char *arq = argv[2];
-	int tamPag = atoi(argv[3]);
-	int tamMem = atoi(argv[4]);
-	double tempoGasto = 0.0;
+	int pageSize = atoi(argv[3]);
+	int memSize = atoi(argv[4]);
+	double executionTime = 0.0;
     
 	if(argc != 5){
 		fprintf(stderr, "ERRO: Numero de argumentos incorreto para a executacao do programa.\n");
 		return 1;
 	}
 
-	if(tamPag < 2 || tamPag > 64){	
+	if(pageSize < 2 || pageSize > 64){	
 		fprintf(stderr, "ERRO: O tamanho de cada pagina nao deve ser menor que 2 nem maior que 64.\n");
 		return 1;
 	}
 		
-	if(tamMem < 128 || tamMem > 16384){
+	if(memSize < 128 || memSize > 16384){
 		fprintf(stderr, "ERRO: O tamanho da memoria nao deve ser menor que 128 nem maior que 16384.\n");
 		return 1;
 	}
@@ -31,12 +31,10 @@ int main(int argc, char **argv){
 	}
 
 	// Criando e preenchendo estrutura de dados ...
-	int numPag = tamMem/tamPag;
-	TabelaDePaginas tabela[numPag];
-	inicializaTabela(tabela, numPag);
-
-	Relatorio rel;
-	inicializaRel(&rel);
+	PageTable table;
+	Memory memory;
+	Report report;
+	initializeStructures(&table, &memory, &report, memSize, pageSize);
 
 	// Criando variáveis e determinando o offset ...
 	char rw; // Caractere que representa a operação - 'R' = read ; 'W' = write.
@@ -120,11 +118,11 @@ int main(int argc, char **argv){
 	fclose(lerArq);
 
 	clock_t fim = clock();
-	tempoGasto = (double)(inicio - fim) / CLOCKS_PER_SEC;
+	executionTime = (double)(inicio - fim) / CLOCKS_PER_SEC;
 
 	// ... Mensagens de saída no formato desejado ...
 
-	fprintf(stdout, "Tempo de execucao = %lf seg\n", tempoGasto);
+	fprintf(stdout, "Tempo de execucao = %lf seg\n", executionTime);
 
 	// Armazenando dados para análise de performance.
 	FILE *logTempos;
@@ -132,7 +130,7 @@ int main(int argc, char **argv){
 	if (logTempos == NULL) {
     perror("Não foi possível abrir o arquivo que armazena os tempos.\n");
 	}
-	fprintf(logTempos, "%lf, " ,tempoGasto);
+	fprintf(logTempos, "%lf, " ,executionTime);
 	fclose(logTempos);
 
 	return 0;

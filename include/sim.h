@@ -31,7 +31,7 @@ typedef struct {
   unsigned pagesRead;
   unsigned pagesToWrite;
   unsigned framesQty;
-  unsigned framesOccupied;
+  unsigned occupiedFrames;
   unsigned clock;
   unsigned memSize;
   Frame *frames;
