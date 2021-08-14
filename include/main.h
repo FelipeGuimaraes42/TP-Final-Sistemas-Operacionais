@@ -9,9 +9,8 @@
 #include <errno.h>
 #include <time.h>
 
-#include "tabelaDePaginas.h"
-#include "auxiliar.h"
-#include "fifo.h"
-#include "lru.h"
+#include "algorithms.h"
+#include "auxiliary.h"
+#include "virtualMemorySimulator.h"
 
 #endif

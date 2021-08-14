@@ -1,8 +1,8 @@
 all:
-	gcc -Wall -c src/main.c src/auxiliar.c src/fifo.c src/lru.c src/tabelaDePaginas.c
-	gcc -Wall -Wextra -std=c11 -ggdb3 main.o auxiliar.o fifo.o lru.o tabelaDePaginas.o -o tp2virtual
+	gcc -Wall -c src/main.c src/auxiliary.c src/algorithms.c src/virtualMemorySimulator.c
+	gcc -Wall -Wextra -std=c11 -ggdb3 main.o auxiliary.o algorithms.o virtualMemorySimulator.o -o tp2virtual
 example:
-	./tp2virtual lefe logs/compilador.log 4 128
+	./tp2virtual lru logs/compilador.log 4 16384
 clean:
 	rm tp2virtual
 	rm *.o
