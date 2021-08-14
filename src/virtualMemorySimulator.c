@@ -6,9 +6,9 @@ void virtualMemorySimulator(PageTable *table, Memory *memory, FILE *file, char *
   char rw;
 
   // Determinando as paginas - olhar expecificação
-  unsigned tmp = table->pageSize * 1024;
-  while (tmp > 1) {
-    tmp = tmp >> 1;
+  unsigned aux = table->pageSize * 1024;
+  while (aux > 1) {
+    aux = aux >> 1;
     offset ++;
   }
 
@@ -24,17 +24,18 @@ void virtualMemorySimulator(PageTable *table, Memory *memory, FILE *file, char *
       else { // caso contrario, deveremos encontrar um quadro para ela
         memory->pagesRead++;
 
-        // uma vez que a quantidade de letras do algoritmo é diferente, podemos
-        // utilizar o tamanho da tecnica de reposição passada pra executar
-        switch (strlen(alg)) {
-        case 3: // CASO 2: LRU
-          frame = lru(table, memory);
-          break;
-        case 4: // CASO 3: FIFO
+        if(strcmp(alg, "fifo") == 0){
           frame = fifo(table, memory);
-          break;
-        default:
-          printf("Tecnica de respoicao nao conhecida");
+
+        }else if(strcmp(alg, "lru") == 0){
+          frame = lru(table, memory);
+
+        }else if(!strcmp(alg, "lefe") == 0){
+          frame = lefe(memory);
+
+        }else{
+          printf("ERRO: Algoritmo nao encontrado\n");
+          exit(1);
         }
 
         if (memory->frames[frame].filledFlag) {
