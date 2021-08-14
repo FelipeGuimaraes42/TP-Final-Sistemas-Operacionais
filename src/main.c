@@ -5,7 +5,7 @@
 int main(int argc, char **argv){
     
 	char *alg = argv[1];
-	char *file = argv[2];
+	FILE *file = argv[2];
 	int pageSize = atoi(argv[3]);
 	int memSize = atoi(argv[4]);
 	double executionTime = 0.0;
@@ -58,6 +58,18 @@ int main(int argc, char **argv){
 	}
 	fprintf(logTempos, "%lf, " ,executionTime);
 	fclose(logTempos);
+
+	printf("Arquivo de entrada: %s\n", argv[2]);
+	printf("Tamanho da memoria: %s KB\n", argv[4]);
+	printf("Tamanho das paginas: %s KB\n", argv[3]);
+	printf("Tecnica de reposicao: %s\n", argv[1]);
+	printf("Paginas lidas: %d\n", memory.pagesRead);
+	printf("Paginas escritas: %d\n", memory.pagesToWrite);
+	
+	free(memory.frames);
+	free(table.pages);
+
+	fclose(file);
 
 	return 0;
 }
