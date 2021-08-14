@@ -1,7 +1,5 @@
 #include "../include/virtualMemorySimulator.h"
 
-// Felipe
-
 void virtualMemorySimulator(PageTable *table, Memory *memory, FILE *file, char *alg) {
   unsigned addr, frame, index;
   unsigned offset = 0;
@@ -29,25 +27,19 @@ void virtualMemorySimulator(PageTable *table, Memory *memory, FILE *file, char *
         // uma vez que a quantidade de letras do algoritmo é diferente, podemos
         // utilizar o tamanho da tecnica de reposição passada pra executar
         switch (strlen(alg)) {
-        case 2: // CASO 1: 2A - SEGUNDA CHANCE -
-          frame = segunda_chance(memory, table);
-          break;
         case 3: // CASO 2: LRU
-          frame = lru(memory, table);
+          frame = lru(table, memory);
           break;
         case 4: // CASO 3: FIFO
-          frame = fifo(memory, table);
-          break;
-        case 6: // CASO 4: RANDOM
-          frame = aleatorio(memory);
+          frame = fifo(table, memory);
           break;
         default:
           printf("Tecnica de respoicao nao conhecida");
         }
 
         if (memory->frames[frame].filledFlag) {
-          libera_frame_flagPreenchido(memory, table, frame);
-          carrega_pagina(memory, table, index, frame);
+          freeFullFrame(table, memory, frame);
+          loadPage(table, memory, frame, index);
         }
       }
       if (rw == 'W') {

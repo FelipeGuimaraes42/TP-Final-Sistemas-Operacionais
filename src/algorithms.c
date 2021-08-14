@@ -1,7 +1,5 @@
 #include "../include/algorithms.h"
 
-// Felipe
-
 int fifo (PageTable *table, Memory *memory) {
   int faster = __INT_MAX__, frame = 0, index;
 
@@ -44,5 +42,5 @@ int lru (PageTable *table, Memory *memory) {
 }
 
 int lefe (PageTable *table, Memory *memory) {
-
+  return 1;
 } // lefe = second chance ????

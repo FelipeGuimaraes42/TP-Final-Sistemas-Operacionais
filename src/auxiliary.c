@@ -1,13 +1,12 @@
 #include "../include/auxiliary.h"
 
-// Leandro
-
 unsigned returnFreeFrame (Memory *memory) {
   for (int i = 0; i < memory->framesQty; i++) {
     if(memory->frames[i].filledFlag == 0) {
       return i;
     }
   }
+  return -1;
 }
 
 void freeFullFrame (PageTable *table, Memory *memory, unsigned frame) {
@@ -19,6 +18,7 @@ void freeFullFrame (PageTable *table, Memory *memory, unsigned frame) {
   memory->occupiedFramesQty --;
   memory->frames[frame].filledFlag = 0;
   memory->frames[frame].page = 0;
+
   // Table Changes.
   table->pages[targetPage].frame = 0;
   table->pages[targetPage].loadedClock = -1;
@@ -35,6 +35,7 @@ void initializeStructures (PageTable *table, Memory *memory, Report *report, int
   report->hits = 0;
   report->pageFaults = 0;
   report->dirtyPages = 0;
+
   // Initializing the memory structure.
   memory->pagesRead = 0;
   memory->pagesToWrite = 0;
@@ -46,6 +47,7 @@ void initializeStructures (PageTable *table, Memory *memory, Report *report, int
   for (int i = 0 ; i < memory->framesQty; i++) {
     memory->frames[i].filledFlag = 0; 
   }
+
   // Initializing the page table structure.
   table->pageQty = pow(2,32) / (pageSize * pow(2,10));
   table->pageSize = pageSize;
@@ -68,6 +70,7 @@ void loadPage (PageTable *table, Memory *memory, unsigned targetFrame, unsigned 
   table->pages[targetPage].dirtyFlag = 0;
   table->pages[targetPage].loadedFlag = 1;
   table->pages[targetPage].secondChanceFlag = 1;
+
   // Memory.
   memory->occupiedFramesQty ++;
   memory->clock ++;

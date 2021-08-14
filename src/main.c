@@ -31,16 +31,16 @@ int main(int argc, char **argv){
 	}
 
 	// Criando e preenchendo estrutura de dados ...
-	PageTable *table;
-	Memory *memory;
-	Report *report;
-	initializeStructures(table, memory, report, memSize, pageSize);
+	PageTable table;
+	Memory memory;
+	Report report;
+	initializeStructures(&table, &memory, &report, memSize, pageSize);
 
 	// Algoritmo principal
 
 	clock_t start = clock();
 
-	virtualMemorySimulator(table, memory, fopen(file, "r"), alg);
+	virtualMemorySimulator(&table, &memory, fopen(file, "r"), alg);
 
 	// ...
 
