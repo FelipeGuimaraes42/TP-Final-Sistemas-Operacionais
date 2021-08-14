@@ -40,10 +40,10 @@ typedef struct {
   Frame *frames;
 } Memory;
 
-int fifo (PageTable *table, Memory *memory);
+int fifo (PageTable *, Memory *);
 
-int lru (PageTable *table, Memory *memory);
+int lru (PageTable *, Memory *);
 
-int lefe (Memory *memory);
+int lefe (Memory *);
 
 #endif

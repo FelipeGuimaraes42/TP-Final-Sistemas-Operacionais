@@ -19,12 +19,12 @@ typedef struct {
   int dirtyPages;
 } Report;
 
-unsigned returnFreeFrame (Memory *memory);
+unsigned returnFreeFrame (Memory *);
 
-void freeFullFrame (PageTable *table, Memory *memory, unsigned frame);
+void freeFullFrame (PageTable *, Memory *, unsigned);
 
-void initializeStructures (PageTable *table, Memory *memory, Report *report, int memSize, int pageSize);
+void initializeStructures (PageTable *, Memory *, Report *, int , int );
 
-void loadPage (PageTable *table, Memory *memory, unsigned targetFrame, unsigned targetPage);
+void loadPage (PageTable *, Memory *, unsigned, unsigned);
 
 #endif
