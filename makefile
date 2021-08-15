@@ -7,6 +7,8 @@ data:
 	gcc -Wall -Wextra -std=c11 -ggdb3 data.o auxiliary.o algorithms.o virtualMemorySimulator.o -o genData
 example:
 	./tp2virtual lru logs/compilador.log 4 2048
+csv:
+	./genData lru logs/compilador.log 4 2048 pageConst
 clean:
 	rm tp2virtual
 	rm genData
