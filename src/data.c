@@ -76,7 +76,7 @@ int main(int argc, char **argv){
 	if (logTempos == NULL) {
     perror("Não foi possível abrir o arquivo que armazena os tempos.\n");
 	}
-	fprintf(logTempos, "%lf," ,executionTime);
+	fprintf(logTempos, "%lf,\n" ,executionTime);
 
 	// Libera memória alocada dinamicamente.
 	free(memory.frames);
