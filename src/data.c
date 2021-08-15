@@ -6,6 +6,7 @@ int main(int argc, char **argv){
 	FILE *file = fopen(argv[2], "r");
 	int pageSize = atoi(argv[3]);
 	int memSize = atoi(argv[4]);
+	char *execType = argv[5];
 	double executionTime = 0.0;
 
 	// Validando entradas.
@@ -14,7 +15,7 @@ int main(int argc, char **argv){
 		return 1;
 	}
     
-	if(argc != 5){
+	if(argc != 6){
 		fprintf(stderr, "ERRO: Numero de argumentos incorreto para a executacao do programa.\n");
 		return 1;
 	}
@@ -47,28 +48,35 @@ int main(int argc, char **argv){
 	clock_t end = clock();
 	executionTime = (double)(end - start) / CLOCKS_PER_SEC;
 
-	// Armazenando dados para análise de performance.
-	FILE *logTempos;
+	// Criando path para arquivo.
   char path[100] = "";
   char _sep_[1] = "_";
 	char buffer[10];
-	strcat(path, "desempenho/");
+	if ((strcmp(execType, "pageConst"))) {
+		strcat(path, "desempenho/memSizeConst/");
+	}
+	if ((strcmp(execType, "memConst"))) {
+		strcat(path, "desempenho/pageSizeConst/");
+	}
   strcat(path, argv[2]);
   strcat(path, _sep_);
   strcat(path, alg);
   strcat(path, _sep_);
 	itoa(pageSize, buffer, 10);
   strcat(path, buffer);
+	buffer[0] = '\0';
   strcat(path, _sep_);
   itoa(memSize, buffer, 10);
   strcat(path, buffer);
   strcat(path, ".csv");
-	printf("%s\n", path);
+
+	// Armazenando dados para análise de performance.
+	FILE *logTempos;
 	logTempos = fopen(path, "a");
 	if (logTempos == NULL) {
     perror("Não foi possível abrir o arquivo que armazena os tempos.\n");
 	}
-	fprintf(logTempos, "%lf, " ,executionTime);
+	fprintf(logTempos, "%lf," ,executionTime);
 
 	// Libera memória alocada dinamicamente.
 	free(memory.frames);
