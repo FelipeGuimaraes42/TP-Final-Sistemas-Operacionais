@@ -8,7 +8,7 @@ int main(int argc, char **argv){
 	int memSize = atoi(argv[4]);
 	double executionTime = 0.0;
 
-	//Validações de entrada
+	// Validando entradas.
 	if(file == NULL) {
 		printf("ERRO: Arquivo nao existe %s\n", argv[2]);
 		return 1;
@@ -34,15 +34,12 @@ int main(int argc, char **argv){
 		return 1;
 	}
 
-	// Criando e preenchendo estrutura de dados ...
+	// Criando e preenchendo estrutura de dados.
 	PageTable table;
 	Memory memory;
-	Report report;
+	initializeStructures(&table, &memory, memSize, pageSize);
 
-	initializeStructures(&table, &memory, &report, memSize, pageSize);
-
-	// Algoritmo principal
-
+	// Algoritmo principal.
 	clock_t start = clock();
 
 	virtualMemorySimulator(&table, &memory, file, alg);
@@ -50,14 +47,15 @@ int main(int argc, char **argv){
 	clock_t end = clock();
 	executionTime = (double)(end - start) / CLOCKS_PER_SEC;
 
-	// ... Mensagens de saída no formato desejado ...
-	fprintf(stdout, "Tempo de execucao = %lf seg\n", executionTime);
-  printf("Arquivo de entrada: %s\n", argv[2]);
-	printf("Tamanho da memoria: %s KB\n", argv[4]);
-	printf("Tamanho das paginas: %s KB\n", argv[3]);
-	printf("Tecnica de reposicao: %s\n", argv[1]);
-	printf("Paginas lidas: %d\n", memory.pagesRead);
-	printf("Paginas escritas: %d\n", memory.pagesToWrite);
+	// Mensagens de saída no formato desejado.
+	fprintf(stdout, "Executando o simulador ... \n");
+  fprintf(stdout, "Arquivo de entrada: %s \n", argv[2]);
+	fprintf(stdout, "Tamanho da memoria: %d KB \n", memSize);
+	fprintf(stdout, "Tamanho das paginas: %d KB \n", pageSize);
+	fprintf(stdout, "Tecnica de reposicao: %s \n", alg);
+	fprintf(stdout, "Paginas lidas: %d \n", memory.pagesRead);
+	fprintf(stdout, "Paginas escritas: %d \n", memory.pagesToWrite);
+	fprintf(stdout, "Tempo de execucao = %lf segundos. \n", executionTime);
 
 	// Armazenando dados para análise de performance.
 	FILE *logTempos;

@@ -16,7 +16,6 @@ typedef struct {
   long int clockAccess;
   int dirtyFlag;
   int loadedFlag;
-  int secondChanceFlag; // RETIRAR CASO LEFE FOR ALEATORIO, AQUI E EM TODOS OS OUTROS LUGARES
 } Page;
 
 typedef struct {

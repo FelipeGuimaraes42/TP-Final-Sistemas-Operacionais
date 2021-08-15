@@ -19,23 +19,15 @@ void freeFullFrame (PageTable *table, Memory *memory, unsigned frame) {
   memory->frames[frame].filledFlag = 0;
   memory->frames[frame].page = 0;
 
-  // Table Changes.
+  // Table changes.
   table->pages[targetPage].frame = 0;
   table->pages[targetPage].loadedClock = -1;
   table->pages[targetPage].clockAccess = 0;
   table->pages[targetPage].dirtyFlag = 0;
   table->pages[targetPage].loadedFlag = 0;
-  table->pages[targetPage].secondChanceFlag = 0;
 }
 
-void initializeStructures (PageTable *table, Memory *memory, Report *report, int memSize, int pageSize) {
-  // Initializing the report structure.
-  report->writes = 0;
-  report->reads = 0;
-  report->hits = 0;
-  report->pageFaults = 0;
-  report->dirtyPages = 0;
-
+void initializeStructures (PageTable *table, Memory *memory, int memSize, int pageSize) {
   // Initializing the memory structure.
   memory->pagesRead = 0;
   memory->pagesToWrite = 0;
@@ -58,7 +50,6 @@ void initializeStructures (PageTable *table, Memory *memory, Report *report, int
     table->pages[i].clockAccess = -1;
     table->pages[i].dirtyFlag = 0;
     table->pages[i].loadedFlag = 0;
-    table->pages[i].secondChanceFlag = 0;
   }
 }
 
@@ -69,7 +60,6 @@ void loadPage (PageTable *table, Memory *memory, unsigned targetFrame, unsigned 
   table->pages[targetPage].clockAccess = memory->clock;
   table->pages[targetPage].dirtyFlag = 0;
   table->pages[targetPage].loadedFlag = 1;
-  table->pages[targetPage].secondChanceFlag = 1;
 
   // Memory.
   memory->occupiedFramesQty ++;

@@ -5,7 +5,6 @@ void virtualMemorySimulator(PageTable *table, Memory *memory, FILE *file, char *
   unsigned offset = 0;
   char rw;
 
-  // Determinando as paginas - olhar expecificação
   unsigned aux = table->pageSize * 1024;
   while (aux > 1) {
     aux = aux >> 1;
@@ -17,11 +16,10 @@ void virtualMemorySimulator(PageTable *table, Memory *memory, FILE *file, char *
     index = addr >> offset;
 
     if (!feof(file)) {
-      if (table->pages[index].loadedFlag == 1) { // caso a pagina ja esteja carregada, iremos acessar normalmente
-        table->pages[index].secondChanceFlag = 1;
+      if (table->pages[index].loadedFlag == 1) {
         table->pages[index].clockAccess = memory->clock;
       }
-      else { // caso contrario, deveremos encontrar um quadro para ela
+      else {
         memory->pagesRead++;
 
         if(strcmp(alg, "fifo") == 0){
