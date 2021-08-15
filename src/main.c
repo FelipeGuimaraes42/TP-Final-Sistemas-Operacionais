@@ -10,7 +10,7 @@ int main(int argc, char **argv){
 
 	// Validando entradas.
 	if(file == NULL) {
-		printf("ERRO: Arquivo nao existe %s\n", argv[2]);
+		fprintf(stderr, "ERRO: Arquivo nao existe %s\n", argv[2]);
 		return 1;
 	}
     
