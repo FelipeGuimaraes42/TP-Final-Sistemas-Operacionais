@@ -1,14 +1,5 @@
 #include "../include/auxiliary.h"
 
-unsigned returnFreeFrame (Memory *memory) {
-  for (int i = 0; i < memory->framesQty; i++) {
-    if(memory->frames[i].filledFlag == 0) {
-      return i;
-    }
-  }
-  return -1;
-}
-
 void freeFullFrame (PageTable *table, Memory *memory, unsigned frame) {
   unsigned targetPage = memory->frames[frame].page;
   // Memory changes.

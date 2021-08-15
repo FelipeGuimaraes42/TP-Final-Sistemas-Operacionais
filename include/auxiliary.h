@@ -11,8 +11,6 @@
  * Defines a structure and methods that are auxiliary in nature.
  */
 
-unsigned returnFreeFrame (Memory *);
-
 void freeFullFrame (PageTable *, Memory *, unsigned);
 
 void initializeStructures (PageTable *, Memory *, int , int );

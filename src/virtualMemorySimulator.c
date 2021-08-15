@@ -28,7 +28,7 @@ void virtualMemorySimulator(PageTable *table, Memory *memory, FILE *file, char *
         }else if(strcmp(alg, "lru") == 0){
           frame = lru(table, memory);
 
-        }else if(!strcmp(alg, "lefe") == 0){
+        }else if(strcmp(alg, "lefe") == 0){
           frame = lefe(memory);
 
         }else{
