@@ -44,6 +44,13 @@ int lru (PageTable *table, Memory *memory) {
 }
 
 int lefe (Memory *memory) {
+  if(memory->occupiedFramesQty < memory->framesQty){
+    for(int i = 0; i < memory->framesQty; i++) {
+      if(memory->frames[i].filledFlag == 0){
+        return i;
+      }
+    }
+  }
   srand(time(NULL));
 	return (rand() % memory->framesQty);
 }
