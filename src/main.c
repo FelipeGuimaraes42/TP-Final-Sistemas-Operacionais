@@ -57,20 +57,11 @@ int main(int argc, char **argv){
 	fprintf(stdout, "Paginas escritas: %d \n", memory.pagesToWrite);
 	fprintf(stdout, "Tempo de execucao = %lf segundos. \n", executionTime);
 
-	// Armazenando dados para análise de performance.
-	FILE *logTempos;
-	logTempos = fopen("desempenho/tempos.csv", "a");
-	if (logTempos == NULL) {
-    perror("Não foi possível abrir o arquivo que armazena os tempos.\n");
-	}
-	fprintf(logTempos, "%lf, " ,executionTime);
-
 	// Libera memória alocada dinamicamente.
 	free(memory.frames);
 	free(table.pages);
 
 	//Fecha arquivos.
-	fclose(logTempos);
 	fclose(file);
 
 	return 0;

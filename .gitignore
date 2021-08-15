@@ -1,7 +1,7 @@
+/References
 References
 .vscode
 *.o
-tp2virtual.*
 tp2virtual
-desempenho/*.csv
-desempenho
+genData
+/desempenho

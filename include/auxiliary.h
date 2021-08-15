@@ -19,4 +19,6 @@ void initializeStructures (PageTable *, Memory *, int , int );
 
 void loadPage (PageTable *, Memory *, unsigned, unsigned);
 
+char* itoa(int, char*, int);
+
 #endif
