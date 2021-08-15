@@ -3,7 +3,13 @@ set -eu
 
 make data
 
-rm -f desempenho/memSizeConst/logs/*.csv && rm -f desempenho/pageSizeConst/logs/*.csv
+rm -rf desempenho
+
+mkdir desempenho
+mkdir desempenho/memSizeConst
+mkdir desempenho/memSizeConst/logs/
+mkdir desempenho/pageSizeConst
+mkdir desempenho/pageSizeConst/logs/
 
 declare -a commandStart=(
   "./genData fifo logs/compilador.log"
